@@ -1,0 +1,8 @@
+*.class
+*.log
+*.csv
+target/
+./.idea
+.idea/
+*.iml
+.bsp/

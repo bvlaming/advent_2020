@@ -9,10 +9,11 @@ object day3_alternative {
     treesOnRow.map { case (_, x) => Point(x, y) }.toArray
   }
 
-  val trees: List[Point] = Source.fromResource("data3.csv").getLines.toList.zipWithIndex.flatMap(parseLine)
+  val inputData: List[String] = Source.fromResource("data3.csv").getLines.toList
+  val trees: List[Point] = inputData.zipWithIndex.flatMap(parseLine)
 
-  val period: Int = Source.fromResource("data3.csv").getLines.toList.head.length
-  val nrLines = 323
+  val period: Int = inputData.head.length
+  val nrLines: Int = inputData.length
 
   def solution(tX: Int, tY: Int): Int = {
     val nMax = nrLines / tY.floor.toInt

@@ -2,14 +2,7 @@ package advent_2020
 
 import scala.io.Source
 
-case class Point(x: Int, y: Int){
-  def isOnTrajectory(tX: Int, tY: Int): Boolean = {
-    tX * y == tY * x
-  }
-}
-
-
-object day3 {
+object day3_alternative {
   def parseLine(idxLine: (String, Int)): Array[Point] = {
     val (line, y) = idxLine
     val treesOnRow = line.zipWithIndex.filter(_._1 == '#')
@@ -19,12 +12,12 @@ object day3 {
   val trees: List[Point] = Source.fromResource("data3.csv").getLines.toList.zipWithIndex.flatMap(parseLine)
 
   val period: Int = Source.fromResource("data3.csv").getLines.toList.head.length
+  val nrLines = 323
 
-  def solution(): Int = {
-    val maxReps = 100
-    val forest = for {
-      n <- Range(0, maxReps)
-    } yield trees.map(p => Point(p.x + n * period, p.y))
-    forest.flatten.count(_.isOnTrajectory(1, 2))
+  def solution(tX: Int, tY: Int): Int = {
+    val nMax = nrLines / tY.floor.toInt
+    val pointsOnTrajectory = Range(0, nMax).map(n => Point(n * tX % period, n * tY))
+    pointsOnTrajectory.toSet.intersect(trees.toSet).size
   }
+
 }

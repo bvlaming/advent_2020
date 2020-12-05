@@ -55,7 +55,7 @@ object day4 {
 
   val separator: String = "\n\n"
   val inputData: Array[String] = Source.fromResource("data4.csv").mkString.split(separator)
-  
+
   val solution: Int = inputData.map(parseLine).count(isValid)
   val solution2: Int  = inputData.map(parseLine).filter(isValid).count(isValid2)
 

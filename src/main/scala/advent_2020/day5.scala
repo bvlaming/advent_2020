@@ -5,7 +5,7 @@ import scala.io.Source
 object day5 {
   val transformer: Map[Char, Int] = Map('F' -> 0, 'B' -> 1, 'L' -> 0, 'R' -> 1)
 
-  def transformViaBinary(s: String): Int = {
+  def binaryStringToInt(s: String): Int = {
     s.map(transformer).reverse.zipWithIndex.foldLeft(0: Int) {
       case (acc, (x, n)) => acc + x * math.pow(2, n).toInt
     }
@@ -13,7 +13,7 @@ object day5 {
 
   def parseBoardingPass(s: String): (Int, Int) = {
     val (row, seat) = s.splitAt(7)
-    (transformViaBinary(row), transformViaBinary(seat))
+    (binaryStringToInt(row), binaryStringToInt(seat))
   }
 
   def seatId(row: Int, seat: Int): Int = 8 * row + seat
@@ -26,5 +26,5 @@ object day5 {
   val solutionB: Int = {
     Range(0, solutionA).find(n => Set(n - 1, n + 1).subsetOf(seatIds.toSet) & (!seatIds.toSet.contains(n))).get
   }
-  
+
 }

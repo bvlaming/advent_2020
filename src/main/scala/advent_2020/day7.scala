@@ -38,8 +38,7 @@ object day7 {
   @tailrec
   def collectChildren(acc: List[(Int, List[(Bag, Int)])],
                       lastGen: List[(Bag, Int)],
-                      n: Int)
-  : List[(Int, List[(Bag, Int)])] = {
+                      n: Int): List[(Int, List[(Bag, Int)])] = {
     // for each generation n: check what/how many bags it contains
     if (lastGen.isEmpty) acc
     else {
@@ -70,12 +69,8 @@ object day7 {
   val solutionB: Int = {
     val startBag = List((Bag("shiny gold"), 1))
     val generations = collectChildren(List((0, startBag)), startBag, 1)
-    println(generations)
 
     val generationsWithCount = generations.map { case (c, ls) => (c, ls.map(_._2).sum) }
     generationsWithCount.map(_._2).sum - 1
   }
-
 }
-
-// light red bags contain 1 bright white bag, 2 muted yellow bags.

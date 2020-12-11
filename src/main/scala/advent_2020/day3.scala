@@ -2,13 +2,12 @@ package advent_2020
 
 import scala.io.Source
 
-case class Point(x: Int, y: Int){
+case class Point(x: Int, y: Int) {
   def isOnTrajectory(tX: Int, tY: Int): Boolean = {
     tX * y == tY * x
   }
 }
-
-
+// see day 11 for the Point implementation
 object day3 {
   def parseLine(idxLine: (String, Int)): Array[Point] = {
     val (line, y) = idxLine

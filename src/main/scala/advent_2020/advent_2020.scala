@@ -3,7 +3,7 @@ package advent_2020
 object advent_2020 {
   def main(args: Array[String]): Unit = {
 
-    val solA = day12.solutionB
+    val solA = day15.solutionA
     println(solA)
   }
 }
